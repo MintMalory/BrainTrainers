@@ -1,0 +1,57 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/BackgroundStyle"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="left"
+    android:orientation="vertical"
+    android:padding="15dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lightsoff_title_textView"
+            style="@style/TitleStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lights_of_title" />
+
+        <TextView
+            android:id="@+id/square_rulles_textView"
+            style="@style/TextStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lights_off_rules_textView" />
+
+        <TextView
+            android:id="@+id/lock_title_textView"
+            style="@style/TitleStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lock_title" />
+
+        <TextView
+            android:id="@+id/lock_rulles_textView"
+            style="@style/TextStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/lock_rules_textView" />
+
+        <TextView
+            android:id="@+id/npuzzle_title_textView"
+            style="@style/TitleStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/barleyBreak_title" />
+
+        <TextView
+            android:id="@+id/barleyBreak_rulles_textView"
+            style="@style/TextStyleSmall"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/barleyBreak_rules_textView" />
+    </LinearLayout>
+
+</ScrollView>

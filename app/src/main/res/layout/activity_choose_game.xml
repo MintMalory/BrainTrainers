@@ -1,0 +1,98 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    style="@style/BackgroundStyle"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_vertical|center_horizontal"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/choose_game_textView"
+        style="@style/TitleStyleBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/choose_game_textView" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <RadioGroup
+            android:id="@+id/choose_game_radioGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RadioButton
+                android:id="@+id/lock_radioButton"
+                style="@style/TextStyleBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_radio_selector"
+                android:text="@string/lock_title" />
+
+            <RadioButton
+                android:id="@+id/n_puzzle_radioButton"
+                style="@style/TextStyleBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_radio_selector"
+                android:text="@string/barleyBreak_title" />
+
+            <RadioButton
+                android:id="@+id/lights_off_radioButton"
+                style="@style/TextStyleBig"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:button="@drawable/custom_radio_selector"
+                android:text="@string/lights_of_title" />
+        </RadioGroup>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/select_difficulty_textView"
+        style="@style/TitleStyleBig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/select_difficulty_textView" />
+
+    <RadioGroup
+        android:id="@+id/select_difficulty_radioGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <RadioButton
+            android:id="@+id/begginer_radioButton"
+            style="@style/TextStyleBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/custom_radio_selector"
+            android:text="@string/beginner_radioButton" />
+
+        <RadioButton
+            android:id="@+id/advanced_radioButton"
+            style="@style/TextStyleBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/custom_radio_selector"
+            android:checked="true"
+            android:text="@string/advanced_radioButton" />
+
+        <RadioButton
+            android:id="@+id/expert_radioButton"
+            style="@style/TextStyleBig"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:button="@drawable/custom_radio_selector"
+            android:text="@string/expert_radioButton" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/go_button"
+        style="@style/OrangeButtonStyle"
+        android:paddingTop="10dp"
+        android:text="@string/go_button" />
+
+</LinearLayout>

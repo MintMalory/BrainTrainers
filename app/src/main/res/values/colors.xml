@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="green_background_color">#FF8400</color>
+    <color name="white_text_color">#FFFFFF</color>
+
+    <string name="chalk_font">fonts/Chalk.ttf</string>
+    <color name="yellow_text_color">#ffff80</color>
+    <color name="orange_color">#FFd200</color>
+
+</resources>
