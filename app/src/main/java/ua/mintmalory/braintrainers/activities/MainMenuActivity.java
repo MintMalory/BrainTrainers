@@ -4,7 +4,7 @@ import butterknife.ButterKnife;
 import butterknife.Bind;
 import ua.mintmalory.braintrainers.ChalkFontHolder;
 import ua.mintmalory.braintrainers.R;
-
+import ua.mintmalory.braintrainers.services.BackgroundMusicService;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -30,8 +30,15 @@ public class MainMenuActivity extends AppCompatActivity implements
         Typeface chalkFont = ChalkFontHolder.getChalkFont(this);
         ButterKnife.bind(this);
         setTypeFaces(chalkFont);
+        startService(new Intent(this, BackgroundMusicService.class));
         mPlayButton.setOnClickListener(this);
         mHelpButton.setOnClickListener(this);
+    }
+
+    @Override
+    public void onBackPressed() {
+        stopService(new Intent(this, BackgroundMusicService.class));
+        super.onBackPressed();
     }
 
     private void setTypeFaces(Typeface type) {

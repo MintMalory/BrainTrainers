@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-public class HelpActivity extends AppCompatActivity {
+public class OptionsActivity extends AppCompatActivity {
 
 	@Bind(R.id.lightsoff_title_textView) TextView mLightsOffTitleTextView;
 	@Bind(R.id.lock_title_textView) TextView mLockTitleTextView;

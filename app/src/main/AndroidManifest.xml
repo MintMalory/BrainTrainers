@@ -46,6 +46,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" >
         </activity>
+        <service android:enabled="true" android:name=".services.BackgroundMusicService" />
     </application>
 
 </manifest>

@@ -47,6 +47,7 @@ public abstract class AbstractGameView extends SurfaceView implements
         mHolder = getHolder();
         mHolder.addCallback(this);
         initPaintSettings();
+        initActionSounds();
     }
 
     private void initTitles() {
@@ -112,6 +113,7 @@ public abstract class AbstractGameView extends SurfaceView implements
 
             if (rebuildField(row, column)) {
                 increaseAmountOfMoves();
+                playSound();
                 refreshField();
             }
         }
@@ -205,4 +207,8 @@ public abstract class AbstractGameView extends SurfaceView implements
     protected abstract void initField(int cellSize);
 
     protected abstract int checkCellSize(int cellSize);
+
+    protected abstract void playSound();
+
+    protected abstract void initActionSounds();
 }

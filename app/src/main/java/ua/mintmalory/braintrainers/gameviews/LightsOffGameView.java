@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.media.MediaPlayer;
 
 import ua.mintmalory.braintrainers.GameDifficulty;
 import ua.mintmalory.braintrainers.R;
@@ -20,6 +21,7 @@ public class LightsOffGameView extends AbstractGameView {
     private static final int FIELD_SIZE_EXPERT = 7;
 
     private StateSquareSprite[][] mField;
+    private MediaPlayer[] actionSounds;
 
     public LightsOffGameView(Context context, GameDifficulty difficulty) {
         super(context);
@@ -174,6 +176,21 @@ public class LightsOffGameView extends AbstractGameView {
         }
 
         return cellSize;
+    }
+
+    @Override
+    protected void playSound() {
+        Random r = new Random();
+        actionSounds[r.nextInt(3)].start();
+    }
+
+    @Override
+    protected void initActionSounds() {
+        actionSounds = new MediaPlayer[3];
+
+        actionSounds[0] = MediaPlayer.create(getContext(), R.raw.tumbler_1);
+        actionSounds[1] = MediaPlayer.create(getContext(), R.raw.tumbler_2);
+        actionSounds[2] = MediaPlayer.create(getContext(), R.raw.tumbler_3);
     }
 
 }

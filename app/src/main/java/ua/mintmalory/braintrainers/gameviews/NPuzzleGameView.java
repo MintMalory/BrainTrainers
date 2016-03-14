@@ -247,4 +247,14 @@ public class NPuzzleGameView extends AbstractGameView {
 
         return cellSize;
     }
+
+    @Override
+    protected void playSound() {
+
+    }
+
+    @Override
+    protected void initActionSounds() {
+
+    }
 }
