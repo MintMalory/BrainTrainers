@@ -70,19 +70,22 @@ public class LightsOffGameView extends AbstractGameView {
         return -1;
     }
 
-    @Override
-    protected int calcFieldSize(GameDifficulty difficulty) {
-        if (difficulty == GameDifficulty.BEGINNER) {
-            return FIELD_SIZE_BEGINNER;
-        }
-
-        if (difficulty == GameDifficulty.EXPERT) {
-            return FIELD_SIZE_EXPERT;
-        }
-
-        return FIELD_SIZE_ADVANCED;
-    }
-
+	@Override
+	protected int getBeginnerFieldSize(){
+		return FIELD_SIZE_BEGINNER;
+	}
+	
+	@Override
+	protected int getAdvancedFieldSize(){
+		return FIELD_SIZE_ADVANCED;
+	}
+	
+	@Override
+	protected int getExpertFieldSize(){
+		return FIELD_SIZE_EXPERT;
+	}
+	
+	
     private void initPictures() {
         mLightOnBmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.bulb_on);

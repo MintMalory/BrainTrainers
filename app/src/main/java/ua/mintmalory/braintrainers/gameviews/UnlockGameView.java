@@ -66,35 +66,39 @@ public class UnlockGameView extends AbstractGameView {
         return -1;
     }
 
-    @Override
-    protected int calcFieldSize(GameDifficulty difficulty) {
-        if (difficulty == GameDifficulty.BEGINNER) {
-            return FIELD_SIZE_BEGINNER;
-        }
-
-        if (difficulty == GameDifficulty.EXPERT) {
-            return FIELD_SIZE_EXPERT;
-        }
-
-        return FIELD_SIZE_ADVANCED;
-    }
+	@Override
+	protected int getBeginnerFieldSize(){
+		return FIELD_SIZE_BEGINNER;
+	}
+	
+	@Override
+	protected int getAdvancedFieldSize(){
+		return FIELD_SIZE_ADVANCED;
+	}
+	
+	@Override
+	protected int getExpertFieldSize(){
+		return FIELD_SIZE_EXPERT;
+	}
 
     private void initPictures() {
         mXBmp = BitmapFactory.decodeResource(getResources(), R.drawable.x);
         mOBmp = BitmapFactory.decodeResource(getResources(), R.drawable.o);
     }
-
-
+	
+	@Override
     protected boolean isFieldTouched(float touchedY) {
         return (touchedY > PADDING_TOP_FIELD)
                 && (touchedY < mField[mField.length - 1][mField.length - 1]
                 .getY()+mField[mField.length - 1][mField.length - 1].getSize());
     }
 
+	@Override
     protected int calcTouchedRow(float touchedX) {
         return (int) ((touchedX - mField[0][0].getX()) / mField[0][0].getSize());
     }
 
+	@Override
     protected int calcTouchedColumn(float touchedY) {
         return (int) ((touchedY - mField[0][0].getY()) / mField[0][0].getSize());
     }

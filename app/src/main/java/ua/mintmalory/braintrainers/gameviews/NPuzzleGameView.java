@@ -91,18 +91,21 @@ public class NPuzzleGameView extends AbstractGameView {
     }
 
 
-    @Override
-    protected int calcFieldSize(GameDifficulty difficulty) {
-        if (difficulty == GameDifficulty.BEGINNER) {
-            return FIELD_SIZE_BEGINNER;
-        }
-
-        if (difficulty == GameDifficulty.EXPERT) {
-            return FIELD_SIZE_EXPERT;
-        }
-
-        return FIELD_SIZE_ADVANCED;
-    }
+	@Override
+	protected int getBeginnerFieldSize(){
+		return FIELD_SIZE_BEGINNER;
+	}
+	
+	@Override
+	protected int getAdvancedFieldSize(){
+		return FIELD_SIZE_ADVANCED;
+	}
+	
+	@Override
+	protected int getExpertFieldSize(){
+		return FIELD_SIZE_EXPERT;
+	}
+	
     @Override
     protected boolean isFieldTouched(float touchedY) {
         return (touchedY > PADDING_TOP_FIELD)
@@ -140,8 +143,6 @@ public class NPuzzleGameView extends AbstractGameView {
         mPaintTextCellsOutOfPlace = new Paint(mPaintTextCellsInPlace);
         mPaintTextCellsOutOfPlace.setColor(Color.WHITE);
     }
-
-
 
     private int countCellsInPlace() {
         int inPlace = 0;

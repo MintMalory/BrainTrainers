@@ -66,6 +66,19 @@ public abstract class AbstractGameView extends SurfaceView implements
         mPaint.setTextSize(30);
     }
 
+	
+    protected int calcFieldSize(GameDifficulty difficulty) {
+        if (difficulty == GameDifficulty.BEGINNER) {
+            return getBeginnerFieldSize();
+        }
+
+        if (difficulty == GameDifficulty.EXPERT) {
+            return getExpertFieldSize();
+        }
+
+        return getAdvancedFieldSize();
+    }
+	
     protected Typeface getTypeface() {
         Activity parentActivity = (Activity) getContext();
         return ChalkFontHolder.getChalkFont(parentActivity);
@@ -181,7 +194,11 @@ public abstract class AbstractGameView extends SurfaceView implements
 
     protected abstract int getFieldSize();
 
-    protected abstract int calcFieldSize(GameDifficulty difficulty);
+    protected abstract int getBeginnerFieldSize();
+	
+	protected abstract int getAdvancedFieldSize();
+	
+	protected abstract int getExpertFieldSize();
 
     protected abstract void drawField(Canvas canvas);
 
