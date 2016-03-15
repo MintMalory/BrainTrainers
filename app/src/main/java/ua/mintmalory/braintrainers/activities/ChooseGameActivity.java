@@ -53,8 +53,10 @@ public class ChooseGameActivity extends AppCompatActivity implements
 
 		setTypeFaceForTitles(customFontChalk);
 
-		mGoButton.setOnClickListener(this);
 
+
+
+		mGoButton.setOnClickListener(this);
 	}
 
 	private void setTypeFaceForTitles(Typeface type) {

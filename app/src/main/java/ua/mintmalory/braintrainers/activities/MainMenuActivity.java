@@ -33,6 +33,7 @@ public class MainMenuActivity extends AppCompatActivity implements
         startService(new Intent(this, BackgroundMusicService.class));
         mPlayButton.setOnClickListener(this);
         mHelpButton.setOnClickListener(this);
+        mOptionsButton.setOnClickListener(this);
     }
 
     @Override
@@ -47,6 +48,8 @@ public class MainMenuActivity extends AppCompatActivity implements
         mHelpButton.setTypeface(type);
     }
 
+
+
     @Override
     public void onClick(View v) {
         Intent intent;
@@ -58,6 +61,11 @@ public class MainMenuActivity extends AppCompatActivity implements
 
         if (v == mHelpButton) {
             intent = new Intent(this, HelpActivity.class);
+            startActivity(intent);
+        }
+
+        if (v == mOptionsButton) {
+            intent = new Intent(this, OptionsActivity.class);
             startActivity(intent);
         }
     }

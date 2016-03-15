@@ -18,6 +18,12 @@
     <string name="expert_radioButton">Expert</string>
     <string name="go_button">Go!</string>
 
+    <string name="options_textView">Options</string>
+    <string name="music_textView">Music</string>
+    <string name="on_radioButton">On</string>
+    <string name="off_radioButton">Off</string>
+    <string name="sound_textView">Sound</string>
+
     <string name="amount_of_moves">Moves: </string>
     <string name="win_title">You win! </string>
     <string name="win_message">Your result is </string>

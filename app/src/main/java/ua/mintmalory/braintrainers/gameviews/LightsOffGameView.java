@@ -47,6 +47,7 @@ public class LightsOffGameView extends AbstractGameView {
         }
 
         invertValueOfCell(mField[column][row]);
+
         return true;
     }
 
@@ -72,22 +73,22 @@ public class LightsOffGameView extends AbstractGameView {
         return -1;
     }
 
-	@Override
-	protected int getBeginnerFieldSize(){
-		return FIELD_SIZE_BEGINNER;
-	}
-	
-	@Override
-	protected int getAdvancedFieldSize(){
-		return FIELD_SIZE_ADVANCED;
-	}
-	
-	@Override
-	protected int getExpertFieldSize(){
-		return FIELD_SIZE_EXPERT;
-	}
-	
-	
+    @Override
+    protected int getBeginnerFieldSize() {
+        return FIELD_SIZE_BEGINNER;
+    }
+
+    @Override
+    protected int getAdvancedFieldSize() {
+        return FIELD_SIZE_ADVANCED;
+    }
+
+    @Override
+    protected int getExpertFieldSize() {
+        return FIELD_SIZE_EXPERT;
+    }
+
+
     private void initPictures() {
         mLightOnBmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.bulb_on);
@@ -138,7 +139,7 @@ public class LightsOffGameView extends AbstractGameView {
     protected void initField(int size) {
         for (int i = 0; i < mField.length; i++)
             for (int j = 0; j < mField.length; j++) {
-                mField[i][j] = new StateSquareSprite(mLightOffBmp, i * size, j * size + PADDING_TOP_FIELD, size, false);
+                mField[i][j] = new StateSquareSprite(mLightOffBmp, j * size, i * size + PADDING_TOP_FIELD, size, false);
             }
 
         Random rand = new Random();
@@ -172,7 +173,7 @@ public class LightsOffGameView extends AbstractGameView {
     @Override
     protected int checkCellSize(int cellSize) {
         if (cellSize > mLightOffBmp.getWidth()) {
-            cellSize= mLightOffBmp.getWidth();
+            cellSize = mLightOffBmp.getWidth();
         }
 
         return cellSize;

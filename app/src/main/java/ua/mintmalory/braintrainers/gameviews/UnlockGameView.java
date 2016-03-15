@@ -134,10 +134,10 @@ public class UnlockGameView extends AbstractGameView {
         for (int i = 0; i < mField.length; i++)
             for (int j = 0; j < mField.length; j++) {
                 if (rand.nextBoolean() == true) {
-                    mField[i][j] = new StateSquareSprite(mOBmp, i * size, j * size
+                    mField[i][j] = new StateSquareSprite(mOBmp, j * size, i * size
                             + PADDING_TOP_FIELD, size, true);
                 } else {
-                    mField[i][j] = new StateSquareSprite(mXBmp, i * size, j * size
+                    mField[i][j] = new StateSquareSprite(mXBmp, j * size, i * size
                             + PADDING_TOP_FIELD, size, false);
                 }
             }

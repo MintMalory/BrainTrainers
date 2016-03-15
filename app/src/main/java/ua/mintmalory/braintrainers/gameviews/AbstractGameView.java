@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -17,11 +18,14 @@ import android.view.SurfaceView;
 import ua.mintmalory.braintrainers.ChalkFontHolder;
 import ua.mintmalory.braintrainers.GameDifficulty;
 import ua.mintmalory.braintrainers.R;
+import ua.mintmalory.braintrainers.SoundAndMusicOptionsState;
+import ua.mintmalory.braintrainers.State;
 
 public abstract class AbstractGameView extends SurfaceView implements
         SurfaceHolder.Callback, DialogInterface.OnClickListener {
     public static final int PADDING_TOP_FIELD = 40;
 
+    private MediaPlayer winSound;
     private String mWinMessageTitle;
     private String mWinMessageText;
     private String mChooseAnotherGameButtonTitle;
@@ -44,6 +48,7 @@ public abstract class AbstractGameView extends SurfaceView implements
         mAmountOfMoves = 0;
         mCurrentContext = context;
         mMovesTitle = getResources().getString(R.string.amount_of_moves);
+        winSound = MediaPlayer.create(context, R.raw.win);
         mHolder = getHolder();
         mHolder.addCallback(this);
         initPaintSettings();
@@ -67,7 +72,7 @@ public abstract class AbstractGameView extends SurfaceView implements
         mPaint.setTextSize(30);
     }
 
-	
+
     protected int calcFieldSize(GameDifficulty difficulty) {
         if (difficulty == GameDifficulty.BEGINNER) {
             return getBeginnerFieldSize();
@@ -79,7 +84,7 @@ public abstract class AbstractGameView extends SurfaceView implements
 
         return getAdvancedFieldSize();
     }
-	
+
     protected Typeface getTypeface() {
         Activity parentActivity = (Activity) getContext();
         return ChalkFontHolder.getChalkFont(parentActivity);
@@ -96,7 +101,6 @@ public abstract class AbstractGameView extends SurfaceView implements
     }
 
 
-
     protected void calcPaddingForText(int screenWidth, int screenHeight,
                                       int cellSize) {
         mPaddingTopText = (screenHeight - (PADDING_TOP_FIELD + cellSize
@@ -108,12 +112,15 @@ public abstract class AbstractGameView extends SurfaceView implements
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (isFieldTouched(event.getY())) {
-            int column = calcTouchedColumn(event.getX());
-            int row = calcTouchedRow(event.getY());
+            int column = calcTouchedColumn(event.getY());
+            int row = calcTouchedRow(event.getX());
 
             if (rebuildField(row, column)) {
                 increaseAmountOfMoves();
-                playSound();
+
+                if (SoundAndMusicOptionsState.sound == State.ON) {
+                    playSound();
+                }
                 refreshField();
             }
         }
@@ -144,6 +151,8 @@ public abstract class AbstractGameView extends SurfaceView implements
 
     protected void showWinMessage() {
         mHolder.lockCanvas();
+
+        winSound.start();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(mCurrentContext);
         builder.setTitle(mWinMessageTitle);
@@ -197,10 +206,10 @@ public abstract class AbstractGameView extends SurfaceView implements
     protected abstract int getFieldSize();
 
     protected abstract int getBeginnerFieldSize();
-	
-	protected abstract int getAdvancedFieldSize();
-	
-	protected abstract int getExpertFieldSize();
+
+    protected abstract int getAdvancedFieldSize();
+
+    protected abstract int getExpertFieldSize();
 
     protected abstract void drawField(Canvas canvas);
 

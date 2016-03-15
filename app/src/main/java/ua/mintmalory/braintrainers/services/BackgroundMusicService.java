@@ -29,7 +29,9 @@ public class BackgroundMusicService extends Service {
     public void onDestroy() {
         if (player_1.isPlaying()) {
             player_1.stop();
-        } else {
+            return;
+        }
+        if (player_2.isPlaying()){
             player_2.stop();
         }
 
