@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="app_name">BrainTrainers</string>
@@ -7,13 +7,19 @@
     <string name="help_button">Правила</string>
 
     <string name="lights_of_title">Вимкни свiтло</string>
-    <string name="lights_off_rules_textView">Необхідно заповнити квадрат числами таким чином, щоб сума чисел у кожному рядку, кожному стовпчику і на обох діагоналях була однакова.</string>
+    <string name="lights_off_rules_textView">Потрібно вимкнути всі лампочки на полі. Але будьте уважні - кожного разу, коли Ви змінюєте стан лампочки, тако ж свій стан перемикают чотири її найближчі сусідки.</string>
     <string name="lock_title">Вiдкрити замок</string>
-    <string name="lock_rules_textView">Необхідно "відкрити" всі клітинки (відкритою вважається комірка з зеленим колом). Після натискання на елемент, всі елементи в рядку та стовчику цього елементу та сам елемент, змінюються на протилежні.</string>
+    <string name="lock_rules_textView">Необхідно відкрити всі замки на полі. Відкрити/закрити замок можна натиснувши на нього. Але не все так просто! Неможливо відкрити/закрити лише один замок. Адже кожний замок також інвертує весь рядок та стовпчик в якому знаходиться</string>
     <string name="barleyBreak_title">П\'ятнашки</string>
-    <string name="barleyBreak_rules_textView">Необхідно впорядковування фішки в порядку зростання, зробивши при цьому якомога менше переміщень.</string>
+    <string name="barleyBreak_rules_textView">Необхідно впорядковування фішки в порядку зростання, зробивши при цьому якомога менше кроків.</string>
 
     <string name="choose_game_textView">Гра</string>
+
+    <string name="options_textView">Налаштування</string>
+    <string name="music_textView">Музика</string>
+    <string name="on_radioButton">Увімк.</string>
+    <string name="off_radioButton">Вимкн.</string>
+    <string name="sound_textView">Звуки</string>
 
     <string name="select_difficulty_textView">Складнiсть</string>
     <string name="beginner_radioButton">Початкiвець</string>

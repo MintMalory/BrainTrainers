@@ -254,7 +254,7 @@ public class NPuzzleGameView extends AbstractGameView {
     @Override
     protected void playSound() {
         Random r = new Random();
-        actionSounds[r.nextInt(3)].start();
+        actionSounds[r.nextInt(actionSounds.length)].start();
     }
 
     @Override

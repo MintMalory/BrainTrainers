@@ -50,7 +50,6 @@ public class OptionsActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setRadioButtonsState();
-
         onOffMusicRadioButton.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {

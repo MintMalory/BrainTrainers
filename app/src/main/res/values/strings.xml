@@ -6,9 +6,9 @@
     <string name="options_button">Options</string>
     <string name="help_button">Help</string>
     <string name="lights_of_title">Lights off</string>
-    <string name="lights_off_rules_textView">!!!You need to put all integers numbers to the square grid, that the numbers in each row, and in each column, and the numbers in the forward and backward main diagonals, all add up to the same number.</string>
+    <string name="lights_off_rules_textView">Turn all bulbs off. Pressing any of the lights will toggle it and the four adjacent lights. The goal of the puzzle is to switch all the lights off, preferably in as few button presses as possible.</string>
     <string name="lock_title">Unlock</string>
-    <string name="lock_rules_textView">Unlock all the cells by clicking on them. The cell with green circle is opened, and with red cross - locked. When you click by item it\'s invert the state. Also, the all items in the same row and the same column with chosen one, invert too.</string>
+    <string name="lock_rules_textView">Unlock all cells by clicking on them. Click on lock to change it's state. But be carefull! Because every time you invert the state of the cell, all items in the same row and column will invert the state too.</string>
     <string name="barleyBreak_title">n-Puzzle</string>
     <string name="barleyBreak_rules_textView">Arrange the numbers in ascending order. Try to make as little as possible moves.</string>
     <string name="choose_game_textView">Game</string>

@@ -34,6 +34,8 @@ public class MainMenuActivity extends AppCompatActivity implements
         mPlayButton.setOnClickListener(this);
         mHelpButton.setOnClickListener(this);
         mOptionsButton.setOnClickListener(this);
+
+
     }
 
     @Override

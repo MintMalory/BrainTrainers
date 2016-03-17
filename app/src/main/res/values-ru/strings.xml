@@ -3,21 +3,27 @@
 
     <string name="app_name">BrainTrainers</string>
     <string name="play_button">Играть!</string>
-    <string name="options_button">Опции</string>
+    <string name="options_button">Настройки</string>
     <string name="help_button">Справка</string>
     <string name="lights_of_title">Туши свет</string>
-    <string name="lights_off_rules_textView">Необходимо заполнить квадрат числами таким образом, чтобы сумма чисел в каждой строке, каждом столбце и на обеих диагоналях была одинаковая.</string>
+    <string name="lights_off_rules_textView">Потуши все лампочки! Жми на лампочку чтобы поменять её состояние на противоположное. Но помни, что вместе с выбранной лампой поменяют свое состояние и четыре её ближайшие соседки.</string>
     <string name="lock_title">Открой замок</string>
-    <string name="lock_rules_textView">Нужно "открыть" все клетки (открытой считается ячейка, содержащая зеленую окружность). При нажатии на ячейку, её содержимое, а также содержимое всех клеток в столбце и строке, к которым она принадлежит, меняется на противоположное.</string>
+    <string name="lock_rules_textView">Нужно открыть все клетки замки. Открыть/закрыть замок можно нажав на него. Но по отдельности каждую ячейку не открыть! Каждый замок, меняя свое состояние, заодно инвертирует ряд и столбец, в котором находится.</string>
     <string name="barleyBreak_title">Пятнашки</string>
-    <string name="barleyBreak_rules_textView">Нужно упорядочить в порядке возростания фишки с номерами, сделав при этом как можно меньше перемещений.</string>
+    <string name="barleyBreak_rules_textView">Нужно выстроить в порядке возростания фишки с номерами, сделав при этом как можно меньше перемещений.</string>
     <string name="choose_game_textView">Игра</string>
     <string name="select_difficulty_textView">Сложность</string>
     <string name="beginner_radioButton">Начинающий</string>
     <string name="advanced_radioButton">Опытный</string>
     <string name="expert_radioButton">Мастер</string>
     <string name="go_button">Поехали!</string>
-    
+
+    <string name="options_textView">Настройки</string>
+    <string name="music_textView">Музыка</string>
+    <string name="on_radioButton">Вкл.</string>
+    <string name="off_radioButton">Выкл.</string>
+    <string name="sound_textView">Звуки</string>
+
     <string name="amount_of_moves">Шагов: </string>
     <string name="win_title">Победа!</string>
     <string name="win_message">Ваш результата </string>
