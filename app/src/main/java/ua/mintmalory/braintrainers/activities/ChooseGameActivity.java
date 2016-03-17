@@ -50,11 +50,7 @@ public class ChooseGameActivity extends AppCompatActivity implements
 		ButterKnife.bind(this);
 
 		Typeface customFontChalk = ChalkFontHolder.getChalkFont(this);
-
 		setTypeFaceForTitles(customFontChalk);
-
-
-
 
 		mGoButton.setOnClickListener(this);
 	}

@@ -30,4 +30,7 @@
     <string name="choose_another_game_title">Другая игра</string>
     <string name="play_again_title">Еще раз</string>
 
+    <string name="mute_msg_text">Воспроизвести музыку в беззвучном режиме?</string>
+    <string name="mute_msg_yes">Да</string>
+    <string name="mute_msg_no">Нет</string>
 </resources>

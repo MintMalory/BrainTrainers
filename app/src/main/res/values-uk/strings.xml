@@ -25,12 +25,16 @@
     <string name="beginner_radioButton">Початкiвець</string>
     <string name="advanced_radioButton">Досвiдчений</string>
     <string name="expert_radioButton">Майстер</string>
-    
+
     <string name="go_button">Почати!</string>
-    
-        <string name="amount_of_moves">Кроки: </string>
-        <string name="win_title">Перемога!</string>
+
+    <string name="amount_of_moves">Кроки: </string>
+    <string name="win_title">Перемога!</string>
     <string name="win_message">Ваш результат </string>
     <string name="choose_another_game_title">Iнша гра</string>
-        <string name="play_again_title">Ще раз</string>
+    <string name="play_again_title">Ще раз</string>
+
+    <string name="mute_msg_text">Ввімкнути музику в беззвучному режимі?</string>
+    <string name="mute_msg_yes">Так</string>
+    <string name="mute_msg_no">Ні</string>
 </resources>

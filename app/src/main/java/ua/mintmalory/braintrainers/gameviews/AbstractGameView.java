@@ -95,7 +95,7 @@ public abstract class AbstractGameView extends SurfaceView implements
                                int height) {
         int cellSize = width / getFieldSize();
         cellSize = checkCellSize(cellSize);
-        initField(cellSize);
+        initField(cellSize, width, height);
         calcPaddingForText(width, height, cellSize);
         refreshField();
     }
@@ -111,7 +111,7 @@ public abstract class AbstractGameView extends SurfaceView implements
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (isFieldTouched(event.getY())) {
+        if (isFieldTouched(event.getY(), event.getX())) {
             int column = calcTouchedColumn(event.getY());
             int row = calcTouchedRow(event.getX());
 
@@ -197,7 +197,7 @@ public abstract class AbstractGameView extends SurfaceView implements
 
     protected abstract boolean isGameOver();
 
-    protected abstract boolean isFieldTouched(float touchedY);
+    protected abstract boolean isFieldTouched(float touchedY, float touchedX);
 
     protected abstract int calcTouchedRow(float touchedX);
 
@@ -213,7 +213,7 @@ public abstract class AbstractGameView extends SurfaceView implements
 
     protected abstract void drawField(Canvas canvas);
 
-    protected abstract void initField(int cellSize);
+    protected abstract void initField(int cellSize, int width, int height );
 
     protected abstract int checkCellSize(int cellSize);
 

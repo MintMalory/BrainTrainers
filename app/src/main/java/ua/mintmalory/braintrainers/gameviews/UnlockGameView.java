@@ -21,6 +21,8 @@ public class UnlockGameView extends AbstractGameView {
     private static final int FIELD_SIZE_ADVANCED = 6;
     private static final int FIELD_SIZE_EXPERT = 8;
 
+    private int paddingLeftField;
+
     private StateSquareSprite[][] mField;
 
     private MediaPlayer[] actionSounds;
@@ -52,6 +54,7 @@ public class UnlockGameView extends AbstractGameView {
         return countOpenedCells() == mField.length * mField.length;
     }
 
+
     @Override
     protected void drawField(Canvas canvas) {
         for (int i = 0; i < mField.length; i++)
@@ -60,8 +63,9 @@ public class UnlockGameView extends AbstractGameView {
             }
     }
 
+
     @Override
-    protected int getFieldSize(){
+    protected int getFieldSize() {
         if (mField != null) {
             return mField.length;
         }
@@ -69,39 +73,45 @@ public class UnlockGameView extends AbstractGameView {
         return -1;
     }
 
-	@Override
-	protected int getBeginnerFieldSize(){
-		return FIELD_SIZE_BEGINNER;
-	}
-	
-	@Override
-	protected int getAdvancedFieldSize(){
-		return FIELD_SIZE_ADVANCED;
-	}
-	
-	@Override
-	protected int getExpertFieldSize(){
-		return FIELD_SIZE_EXPERT;
-	}
+    @Override
+    protected int getBeginnerFieldSize() {
+        return FIELD_SIZE_BEGINNER;
+    }
+
+    @Override
+    protected int getAdvancedFieldSize() {
+        return FIELD_SIZE_ADVANCED;
+    }
+
+    @Override
+    protected int getExpertFieldSize() {
+        return FIELD_SIZE_EXPERT;
+    }
 
     private void initPictures() {
         mXBmp = BitmapFactory.decodeResource(getResources(), R.drawable.x);
         mOBmp = BitmapFactory.decodeResource(getResources(), R.drawable.o);
     }
-	
-	@Override
-    protected boolean isFieldTouched(float touchedY) {
-        return (touchedY > PADDING_TOP_FIELD)
-                && (touchedY < mField[mField.length - 1][mField.length - 1]
-                .getY()+mField[mField.length - 1][mField.length - 1].getSize());
+
+    @Override
+    protected boolean isFieldTouched(float touchedY, float touchedX) {
+        boolean vertical = (touchedY >  mField[0][0].getY())
+                && (touchedY < (mField[mField.length - 1][mField.length - 1]
+                .getY() + mField[mField.length - 1][mField.length - 1].getSize()));
+
+        boolean horizontal = (touchedX > mField[0][0].getX())
+                && (touchedX < (mField[0][mField.length - 1]
+                .getX() + mField[0][0].getSize()));
+
+        return vertical && horizontal;
     }
 
-	@Override
+    @Override
     protected int calcTouchedRow(float touchedX) {
         return (int) ((touchedX - mField[0][0].getX()) / mField[0][0].getSize());
     }
 
-	@Override
+    @Override
     protected int calcTouchedColumn(float touchedY) {
         return (int) ((touchedY - mField[0][0].getY()) / mField[0][0].getSize());
     }
@@ -129,16 +139,21 @@ public class UnlockGameView extends AbstractGameView {
     }
 
     @Override
-    protected void initField(int size) {
+
+    protected void initField(int cellSize, int width, int height) {
+        int fieldWidth = cellSize * mField.length;
+        paddingLeftField = (width - fieldWidth) / 2;
+
+
         Random rand = new Random();
         for (int i = 0; i < mField.length; i++)
             for (int j = 0; j < mField.length; j++) {
                 if (rand.nextBoolean() == true) {
-                    mField[i][j] = new StateSquareSprite(mOBmp, j * size, i * size
-                            + PADDING_TOP_FIELD, size, true);
+                    mField[i][j] = new StateSquareSprite(mOBmp, j * cellSize + paddingLeftField, i * cellSize
+                            + PADDING_TOP_FIELD, cellSize, true);
                 } else {
-                    mField[i][j] = new StateSquareSprite(mXBmp, j * size, i * size
-                            + PADDING_TOP_FIELD, size, false);
+                    mField[i][j] = new StateSquareSprite(mXBmp, j * cellSize + paddingLeftField, i * cellSize
+                            + PADDING_TOP_FIELD, cellSize, false);
                 }
             }
     }

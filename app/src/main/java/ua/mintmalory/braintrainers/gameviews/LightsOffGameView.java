@@ -22,6 +22,7 @@ public class LightsOffGameView extends AbstractGameView {
 
     private StateSquareSprite[][] mField;
     private MediaPlayer[] actionSounds;
+    private int paddingLeftField;
 
     public LightsOffGameView(Context context, GameDifficulty difficulty) {
         super(context);
@@ -98,10 +99,16 @@ public class LightsOffGameView extends AbstractGameView {
 
 
     @Override
-    protected boolean isFieldTouched(float touchedY) {
-        return (touchedY > PADDING_TOP_FIELD)
-                && (touchedY < mField[mField.length - 1][mField.length - 1]
-                .getY() + mField[mField.length - 1][mField.length - 1].getSize());
+    protected boolean isFieldTouched(float touchedY, float touchedX) {
+        boolean vertical = (touchedY > mField[0][0].getY())
+                && (touchedY < (mField[mField.length - 1][mField.length - 1]
+                .getY() + mField[mField.length - 1][mField.length - 1].getSize()));
+
+        boolean horizontal = (touchedX > mField[0][0].getX())
+                && (touchedX < (mField[0][mField.length - 1]
+                .getX() + mField[0][0].getSize()));
+
+        return vertical && horizontal;
     }
 
     @Override
@@ -136,10 +143,13 @@ public class LightsOffGameView extends AbstractGameView {
     }
 
     @Override
-    protected void initField(int size) {
+    protected void initField(int cellSize, int width, int height) {
+        int fieldWidth = cellSize * mField.length;
+        paddingLeftField = (width - fieldWidth) / 2;
+
         for (int i = 0; i < mField.length; i++)
             for (int j = 0; j < mField.length; j++) {
-                mField[i][j] = new StateSquareSprite(mLightOffBmp, j * size, i * size + PADDING_TOP_FIELD, size, false);
+                mField[i][j] = new StateSquareSprite(mLightOffBmp, j * cellSize + paddingLeftField, i * cellSize + PADDING_TOP_FIELD, cellSize, false);
             }
 
         Random rand = new Random();

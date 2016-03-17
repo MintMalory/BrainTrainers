@@ -4,9 +4,17 @@ import butterknife.ButterKnife;
 import butterknife.Bind;
 import ua.mintmalory.braintrainers.ChalkFontHolder;
 import ua.mintmalory.braintrainers.R;
+import ua.mintmalory.braintrainers.SoundAndMusicOptionsState;
+import ua.mintmalory.braintrainers.State;
 import ua.mintmalory.braintrainers.services.BackgroundMusicService;
+
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,11 +23,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 
 public class MainMenuActivity extends AppCompatActivity implements
-        OnClickListener {
+        OnClickListener, DialogInterface.OnClickListener {
 
-    @Bind(R.id.play_button)Button mPlayButton;
-    @Bind(R.id.options_button)Button mOptionsButton;
-    @Bind(R.id.help_button)Button mHelpButton;
+    @Bind(R.id.play_button)
+    Button mPlayButton;
+    @Bind(R.id.options_button)
+    Button mOptionsButton;
+    @Bind(R.id.help_button)
+    Button mHelpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,12 +41,56 @@ public class MainMenuActivity extends AppCompatActivity implements
         Typeface chalkFont = ChalkFontHolder.getChalkFont(this);
         ButterKnife.bind(this);
         setTypeFaces(chalkFont);
-        startService(new Intent(this, BackgroundMusicService.class));
+
         mPlayButton.setOnClickListener(this);
         mHelpButton.setOnClickListener(this);
         mOptionsButton.setOnClickListener(this);
 
+        AudioManager audio = (AudioManager) this.getSystemService(Context.AUDIO_SERVICE);
 
+
+        if (audio.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
+            showMuteMessage();
+        }else{
+            startService();
+        }
+    }
+
+    private void showMuteMessage() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.mute_msg_text);
+        builder.setCancelable(false);
+        builder.setNegativeButton(R.string.mute_msg_no, this);
+        builder.setPositiveButton(R.string.mute_msg_yes, this);
+
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    private void startService(){
+        startService(new Intent(this, BackgroundMusicService.class));
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int id) {
+        if (id == DialogInterface.BUTTON_POSITIVE) {
+            SoundAndMusicOptionsState.sound = State.ON;
+            SoundAndMusicOptionsState.music = State.ON;
+            startService();
+            return;
+        }
+
+        if (id == DialogInterface.BUTTON_NEGATIVE) {
+            dialog.cancel();
+            SoundAndMusicOptionsState.sound = State.OFF;
+            SoundAndMusicOptionsState.music = State.OFF;
+            return;
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
     }
 
     @Override
@@ -49,7 +104,6 @@ public class MainMenuActivity extends AppCompatActivity implements
         mOptionsButton.setTypeface(type);
         mHelpButton.setTypeface(type);
     }
-
 
 
     @Override

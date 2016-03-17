@@ -32,6 +32,7 @@ public class NPuzzleGameView extends AbstractGameView {
     private Paint mPaintTextCellsInPlace;
     private Paint mPaintTextCellsOutOfPlace;
     private MediaPlayer actionSounds[];
+    private int paddingLeftField;
 
     public NPuzzleGameView(Context context, GameDifficulty difficulty) {
         super(context);
@@ -110,10 +111,16 @@ public class NPuzzleGameView extends AbstractGameView {
     }
 
     @Override
-    protected boolean isFieldTouched(float touchedY) {
-        return (touchedY > PADDING_TOP_FIELD)
+    protected boolean isFieldTouched(float touchedY, float touchedX) {
+        boolean vertical = (touchedY >  mField[0][0].getY())
                 && (touchedY < (mField[mField.length - 1][mField.length - 1]
                 .getY() + mField[mField.length - 1][mField.length - 1].getSize()));
+
+        boolean horizontal = (touchedX > mField[0][0].getX())
+                && (touchedX < (mField[0][mField.length - 1]
+                .getX() + mField[0][0].getSize()));
+
+        return vertical && horizontal;
     }
 
 
@@ -214,7 +221,10 @@ public class NPuzzleGameView extends AbstractGameView {
     }
 
     @Override
-    protected void initField(int cellSize) {
+    protected void initField(int cellSize, int width, int height) {
+        int fieldWidth = cellSize * mField.length;
+        paddingLeftField = (width - fieldWidth) / 2;
+
         int lastCellNumber = mField.length * mField.length;
         List<Integer> arrTmp = new ArrayList<Integer>(lastCellNumber);
 
@@ -230,10 +240,10 @@ public class NPuzzleGameView extends AbstractGameView {
             for (int j = 0; j < mField.length; j++) {
                 if (arrTmp.get(i * mField.length + j) != lastCellNumber) {
                     mField[i][j] = new NumberedSquareSprite(mCellBmp,
-                            j * cellSize , i * cellSize + PADDING_TOP_FIELD, cellSize, arrTmp.get(i
+                            j * cellSize +paddingLeftField , i * cellSize + PADDING_TOP_FIELD, cellSize, arrTmp.get(i
                             * mField.length + j));
                 } else {
-                    mField[i][j] = new NumberedSquareSprite(mEmptyCellBmp, j * cellSize,  i
+                    mField[i][j] = new NumberedSquareSprite(mEmptyCellBmp, j * cellSize +paddingLeftField,  i
                             * cellSize+ PADDING_TOP_FIELD, cellSize,
                             arrTmp.get(i * mField.length + j));
                 }

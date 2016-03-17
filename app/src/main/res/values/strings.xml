@@ -8,7 +8,7 @@
     <string name="lights_of_title">Lights off</string>
     <string name="lights_off_rules_textView">Turn all bulbs off. Pressing any of the lights will toggle it and the four adjacent lights. The goal of the puzzle is to switch all the lights off, preferably in as few button presses as possible.</string>
     <string name="lock_title">Unlock</string>
-    <string name="lock_rules_textView">Unlock all cells by clicking on them. Click on lock to change it's state. But be carefull! Because every time you invert the state of the cell, all items in the same row and column will invert the state too.</string>
+    <string name="lock_rules_textView">Unlock all cells by clicking on them. Click on lock to change it\'s state. But be careful! Because every time you invert the state of the cell, all items in the same row and column will invert the state too.</string>
     <string name="barleyBreak_title">n-Puzzle</string>
     <string name="barleyBreak_rules_textView">Arrange the numbers in ascending order. Try to make as little as possible moves.</string>
     <string name="choose_game_textView">Game</string>
@@ -29,5 +29,9 @@
     <string name="win_message">Your result is </string>
     <string name="choose_another_game_title">Another game</string>
     <string name="play_again_title">Play again</string>
+
+    <string name="mute_msg_text">Do you want to play music in silent mode?</string>
+    <string name="mute_msg_yes">Yes</string>
+    <string name="mute_msg_no">No</string>
 
 </resources>
