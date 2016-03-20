@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+/**
+ * Activity which displays reference information about games (aim of games, game's rules etc).
+ */
 public class HelpActivity extends AppCompatActivity {
 
 	@Bind(R.id.lightsoff_title_textView) TextView mLightsOffTitleTextView;
@@ -22,15 +25,19 @@ public class HelpActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_help);
 		
-		Typeface type = ChalkFontHolder.getChalkFont(this);
+		Typeface customTypeFace = ChalkFontHolder.getChalkFont(this);
 		
 		ButterKnife.bind(this);
-		setTypeFaces(type);
+		setTypeFaces(customTypeFace);
 	}
-		
-	private void setTypeFaces(Typeface type){
-		mLightsOffTitleTextView.setTypeface(type);
-		mLockTitleTextView.setTypeface(type);
-		mNPuzzleTitleTextView.setTypeface(type);
+
+	/**
+	 * Sets custom font to views
+	 * @param customTypeFace typeface for setting
+	 */
+	private void setTypeFaces(Typeface customTypeFace){
+		mLightsOffTitleTextView.setTypeface(customTypeFace);
+		mLockTitleTextView.setTypeface(customTypeFace);
+		mNPuzzleTitleTextView.setTypeface(customTypeFace);
 	}
 }

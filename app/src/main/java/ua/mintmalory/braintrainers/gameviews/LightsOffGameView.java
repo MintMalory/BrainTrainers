@@ -13,15 +13,39 @@ import ua.mintmalory.braintrainers.R;
 import ua.mintmalory.braintrainers.StateSquareSprite;
 
 public class LightsOffGameView extends AbstractGameView {
+    /**
+     * Image for cell with turned on bulb.
+     */
     private Bitmap mLightOnBmp;
+    /**
+     * Image for cell with turned off bulb.
+     */
     private Bitmap mLightOffBmp;
 
+    /**
+     * Field width/height which appropriates for beginner game difficulty.
+     */
     private static final int FIELD_SIZE_BEGINNER = 5;
+    /**
+     * Field width/height which appropriates for advanced game difficulty.
+     */
     private static final int FIELD_SIZE_ADVANCED = 6;
+    /**
+     * Field width/height which appropriates for expert game difficulty.
+     */
     private static final int FIELD_SIZE_EXPERT = 7;
 
+    /**
+     * Array which represents game field.
+     */
     private StateSquareSprite[][] mField;
+    /**
+     * Set of game sounds.
+     */
     private MediaPlayer[] actionSounds;
+    /**
+     * Padding from left side of the screen. It's used for centring the field.
+     */
     private int paddingLeftField;
 
     public LightsOffGameView(Context context, GameDifficulty difficulty) {
@@ -89,7 +113,9 @@ public class LightsOffGameView extends AbstractGameView {
         return FIELD_SIZE_EXPERT;
     }
 
-
+    /**
+     * Initializes images
+     */
     private void initPictures() {
         mLightOnBmp = BitmapFactory.decodeResource(getResources(),
                 R.drawable.bulb_on);
@@ -121,6 +147,11 @@ public class LightsOffGameView extends AbstractGameView {
         return (int) ((touchedY - mField[0][0].getY()) / mField[0][0].getSize());
     }
 
+    /**
+     * Calculates amount of turned off lights on the game field.
+     *
+     * @return amount of turned off lights on the game field.
+     */
     private int countOutedLights() {
         int outed = 0;
 
@@ -134,6 +165,11 @@ public class LightsOffGameView extends AbstractGameView {
         return outed;
     }
 
+    /**
+     * Changes state of the cell to the opposite.
+     *
+     * @param spr sprite of the cell, which is needed to be inverted.
+     */
     private void invertValueOfCell(StateSquareSprite spr) {
         if (spr.isActive()) {
             spr.setState(mLightOffBmp, false);
@@ -143,13 +179,13 @@ public class LightsOffGameView extends AbstractGameView {
     }
 
     @Override
-    protected void initField(int cellSize, int width, int height) {
+    protected void initField(int cellSize, int screenWidth, int screenHeight) {
         int fieldWidth = cellSize * mField.length;
-        paddingLeftField = (width - fieldWidth) / 2;
+        paddingLeftField = (screenWidth - fieldWidth) / 2;
 
         for (int i = 0; i < mField.length; i++)
             for (int j = 0; j < mField.length; j++) {
-                mField[i][j] = new StateSquareSprite(mLightOffBmp, j * cellSize + paddingLeftField, i * cellSize + PADDING_TOP_FIELD, cellSize, false);
+                mField[i][j] = new StateSquareSprite(mLightOffBmp, j * cellSize + paddingLeftField, i * cellSize + mPaddingTopField, cellSize, false);
             }
 
         Random rand = new Random();

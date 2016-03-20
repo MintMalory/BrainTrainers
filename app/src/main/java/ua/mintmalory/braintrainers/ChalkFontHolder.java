@@ -3,6 +3,9 @@ package ua.mintmalory.braintrainers;
 import android.app.Activity;
 import android.graphics.Typeface;
 
+/**
+ * Class for holding custom font.
+ */
 public class ChalkFontHolder{
 	private static Typeface chalkFont;
 

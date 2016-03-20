@@ -18,20 +18,57 @@ import ua.mintmalory.braintrainers.NumberedSquareSprite;
 import ua.mintmalory.braintrainers.R;
 
 public class NPuzzleGameView extends AbstractGameView {
+    /**
+     * Image for cell with number.
+     */
     private Bitmap mCellBmp;
+    /**
+     * Image for empty cell.
+     */
     private Bitmap mEmptyCellBmp;
 
+    /**
+     * Field width/height which appropriates for beginner game difficulty.
+     */
     private static final int FIELD_SIZE_BEGINNER = 3;
+    /**
+     * Field width/height which appropriates for advanced game difficulty.
+     */
     private static final int FIELD_SIZE_ADVANCED = 4;
+    /**
+     * Field width/height which appropriates for expert game difficulty.
+     */
     private static final int FIELD_SIZE_EXPERT = 5;
 
+    /**
+     * Number of column in which empty cell is situated.
+     */
     private int mEmptyCellColumn;
+    /**
+     * Number of row in which empty cell is situated.
+     */
     private int mEmptyCellRow;
 
+    /**
+     * Array which represents game field.
+     */
     private NumberedSquareSprite[][] mField;
+
+    /**
+     * Settings of the brush for writing numbers on tiles, that are in place.
+     */
     private Paint mPaintTextCellsInPlace;
+    /**
+     * Settings of the brush for writing numbers on tiles, that are out of place.
+     */
     private Paint mPaintTextCellsOutOfPlace;
+    /**
+     * Set of game sounds.
+     */
     private MediaPlayer actionSounds[];
+    /**
+     * Padding from left side of the screen. It's used for centring the field.
+     */
     private int paddingLeftField;
 
     public NPuzzleGameView(Context context, GameDifficulty difficulty) {
@@ -73,11 +110,23 @@ public class NPuzzleGameView extends AbstractGameView {
             }
     }
 
+    /**
+     * Sets font size for writing number on tiles.
+     *
+     * @param size font size.
+     */
     private void setCellsTextSize(float size) {
         mPaintTextCellsInPlace.setTextSize(size);
         mPaintTextCellsOutOfPlace.setTextSize(size);
     }
 
+    /**
+     * Checks if {@code cell[row][column]} is near empty cell. Tiles are near, if they have one common side.
+     *
+     * @param row    number of row, in which checked cell is situated
+     * @param column number of column, in which checked cell is situated
+     * @return {@code true} if checked tiles are near, and {@code false} otherwise.
+     */
     private boolean isEmptyCellsNear(int row, int column) {
         return ((mEmptyCellColumn + 1 == column) && (mEmptyCellRow == row))
                 || ((mEmptyCellColumn - 1 == column) && (mEmptyCellRow == row))
@@ -112,7 +161,7 @@ public class NPuzzleGameView extends AbstractGameView {
 
     @Override
     protected boolean isFieldTouched(float touchedY, float touchedX) {
-        boolean vertical = (touchedY >  mField[0][0].getY())
+        boolean vertical = (touchedY > mField[0][0].getY())
                 && (touchedY < (mField[mField.length - 1][mField.length - 1]
                 .getY() + mField[mField.length - 1][mField.length - 1].getSize()));
 
@@ -134,6 +183,9 @@ public class NPuzzleGameView extends AbstractGameView {
         return (int) ((touchedY - mField[0][0].getY()) / mField[0][0].getSize());
     }
 
+    /**
+     * Initializes images for tiles.
+     */
     private void initPictures() {
         mCellBmp = BitmapFactory
                 .decodeResource(getResources(), R.drawable.cell);
@@ -148,12 +200,17 @@ public class NPuzzleGameView extends AbstractGameView {
         mPaintTextCellsInPlace = new Paint();
         mPaintTextCellsInPlace.setColor(getResources().getColor(
                 R.color.orange_color));
-        mPaintTextCellsInPlace.setTypeface(getTypeface());
+        mPaintTextCellsInPlace.setTypeface(getCustomTypeface());
         mPaintTextCellsInPlace.setTextAlign(Paint.Align.CENTER);
         mPaintTextCellsOutOfPlace = new Paint(mPaintTextCellsInPlace);
         mPaintTextCellsOutOfPlace.setColor(Color.WHITE);
     }
 
+    /**
+     * Calculates amount of tiles in place on the game field.
+     *
+     * @return amount of tiles in place on the game field.
+     */
     private int countCellsInPlace() {
         int inPlace = 0;
 
@@ -167,6 +224,12 @@ public class NPuzzleGameView extends AbstractGameView {
         return inPlace;
     }
 
+    /**
+     * Swaps {@code cell[row][column]} with empty cell.
+     *
+     * @param row    row in which cell to swap is situated.
+     * @param column column in which cell to swap is situated.
+     */
     private void swapCells(int row, int column) {
         NumberedSquareSprite tmp = mField[column][row];
         mField[column][row] = mField[mEmptyCellColumn][mEmptyCellRow];
@@ -188,6 +251,12 @@ public class NPuzzleGameView extends AbstractGameView {
         mEmptyCellRow = row;
     }
 
+    /**
+     * Checks if combination of shuffled tiles has a solution according to game's rules.
+     *
+     * @param arr combination of shuffled tiles.
+     * @return {@code true} if combination can be solved, and {@code false} otherwise.
+     */
     private boolean isSolution(List<Integer> arr) {
         int tempSum = 0;
         int sum = 0;
@@ -221,9 +290,9 @@ public class NPuzzleGameView extends AbstractGameView {
     }
 
     @Override
-    protected void initField(int cellSize, int width, int height) {
+    protected void initField(int cellSize, int screenWidth, int screenHeight) {
         int fieldWidth = cellSize * mField.length;
-        paddingLeftField = (width - fieldWidth) / 2;
+        paddingLeftField = (screenWidth - fieldWidth) / 2;
 
         int lastCellNumber = mField.length * mField.length;
         List<Integer> arrTmp = new ArrayList<Integer>(lastCellNumber);
@@ -240,11 +309,11 @@ public class NPuzzleGameView extends AbstractGameView {
             for (int j = 0; j < mField.length; j++) {
                 if (arrTmp.get(i * mField.length + j) != lastCellNumber) {
                     mField[i][j] = new NumberedSquareSprite(mCellBmp,
-                            j * cellSize +paddingLeftField , i * cellSize + PADDING_TOP_FIELD, cellSize, arrTmp.get(i
+                            j * cellSize + paddingLeftField, i * cellSize + mPaddingTopField, cellSize, arrTmp.get(i
                             * mField.length + j));
                 } else {
-                    mField[i][j] = new NumberedSquareSprite(mEmptyCellBmp, j * cellSize +paddingLeftField,  i
-                            * cellSize+ PADDING_TOP_FIELD, cellSize,
+                    mField[i][j] = new NumberedSquareSprite(mEmptyCellBmp, j * cellSize + paddingLeftField, i
+                            * cellSize + mPaddingTopField, cellSize,
                             arrTmp.get(i * mField.length + j));
                 }
             }

@@ -38,7 +38,7 @@
     </style>
     
     <style name="BackgroundStyle">
-        <item name="android:background">@drawable/bg_usual</item>
+        <item name="android:background">@drawable/bg</item>
     </style>
 
     <style name="TextStyleBig">

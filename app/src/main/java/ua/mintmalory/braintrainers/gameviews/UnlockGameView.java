@@ -14,17 +14,41 @@ import ua.mintmalory.braintrainers.R;
 import ua.mintmalory.braintrainers.StateSquareSprite;
 
 public class UnlockGameView extends AbstractGameView {
-    private Bitmap mXBmp;
-    private Bitmap mOBmp;
+    /**
+     * Image for cell with locked lock.
+     */
+    private Bitmap mLockedBmp;
+    /**
+     * Image for cell with unlocked lock.
+     */
+    private Bitmap mUnlockedBmp;
 
+    /**
+     * Field width/height which appropriates for beginner game difficulty.
+     */
     private static final int FIELD_SIZE_BEGINNER = 4;
+    /**
+     * Field width/height which appropriates for advanced game difficulty.
+     */
     private static final int FIELD_SIZE_ADVANCED = 6;
+    /**
+     * Field width/height which appropriates for expert game difficulty.
+     */
     private static final int FIELD_SIZE_EXPERT = 8;
 
+    /**
+     * Padding from left side of the screen. It's used for centring the field.
+     */
     private int paddingLeftField;
 
+    /**
+     * Array which represents game field.
+     */
     private StateSquareSprite[][] mField;
 
+    /**
+     * Set of game sounds.
+     */
     private MediaPlayer[] actionSounds;
 
     public UnlockGameView(Context context, GameDifficulty difficulty) {
@@ -89,13 +113,13 @@ public class UnlockGameView extends AbstractGameView {
     }
 
     private void initPictures() {
-        mXBmp = BitmapFactory.decodeResource(getResources(), R.drawable.x);
-        mOBmp = BitmapFactory.decodeResource(getResources(), R.drawable.o);
+        mLockedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.x);
+        mUnlockedBmp = BitmapFactory.decodeResource(getResources(), R.drawable.o);
     }
 
     @Override
     protected boolean isFieldTouched(float touchedY, float touchedX) {
-        boolean vertical = (touchedY >  mField[0][0].getY())
+        boolean vertical = (touchedY > mField[0][0].getY())
                 && (touchedY < (mField[mField.length - 1][mField.length - 1]
                 .getY() + mField[mField.length - 1][mField.length - 1].getSize()));
 
@@ -117,6 +141,11 @@ public class UnlockGameView extends AbstractGameView {
     }
 
 
+    /**
+     * Calculates amount of unlocked locks on the game field.
+     *
+     * @return amount of unlocked locks on the game field.
+     */
     private int countOpenedCells() {
         int opened = 0;
 
@@ -130,38 +159,42 @@ public class UnlockGameView extends AbstractGameView {
         return opened;
     }
 
+    /**
+     * Changes state of the cell to the opposite.
+     *
+     * @param spr sprite of the cell, which is needed to be inverted.
+     */
     private void invertValueOfCell(StateSquareSprite spr) {
         if (spr.isActive()) {
-            spr.setState(mXBmp, false);
+            spr.setState(mLockedBmp, false);
         } else {
-            spr.setState(mOBmp, true);
+            spr.setState(mUnlockedBmp, true);
         }
     }
 
     @Override
-
-    protected void initField(int cellSize, int width, int height) {
+    protected void initField(int cellSize, int screenWidth, int screenHeight) {
         int fieldWidth = cellSize * mField.length;
-        paddingLeftField = (width - fieldWidth) / 2;
+        paddingLeftField = (screenWidth - fieldWidth) / 2;
 
 
         Random rand = new Random();
         for (int i = 0; i < mField.length; i++)
             for (int j = 0; j < mField.length; j++) {
                 if (rand.nextBoolean() == true) {
-                    mField[i][j] = new StateSquareSprite(mOBmp, j * cellSize + paddingLeftField, i * cellSize
-                            + PADDING_TOP_FIELD, cellSize, true);
+                    mField[i][j] = new StateSquareSprite(mUnlockedBmp, j * cellSize + paddingLeftField, i * cellSize
+                            + mPaddingTopField, cellSize, true);
                 } else {
-                    mField[i][j] = new StateSquareSprite(mXBmp, j * cellSize + paddingLeftField, i * cellSize
-                            + PADDING_TOP_FIELD, cellSize, false);
+                    mField[i][j] = new StateSquareSprite(mLockedBmp, j * cellSize + paddingLeftField, i * cellSize
+                            + mPaddingTopField, cellSize, false);
                 }
             }
     }
 
     @Override
     protected int checkCellSize(int cellSize) {
-        if (cellSize > mOBmp.getWidth()) {
-            cellSize = mOBmp.getWidth();
+        if (cellSize > mUnlockedBmp.getWidth()) {
+            cellSize = mUnlockedBmp.getWidth();
         }
         return cellSize;
     }

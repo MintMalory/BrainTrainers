@@ -1,0 +1,5 @@
+<resources>
+    <dimen name="activity_horizontal_margin">0dp</dimen>
+    <dimen name="padding_top_field">0dp</dimen>
+    <dimen name="moves_text_size">20dp</dimen>
+</resources>

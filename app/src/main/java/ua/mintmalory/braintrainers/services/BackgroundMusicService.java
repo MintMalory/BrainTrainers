@@ -12,9 +12,21 @@ import ua.mintmalory.braintrainers.R;
 import ua.mintmalory.braintrainers.SoundAndMusicOptionsState;
 import ua.mintmalory.braintrainers.State;
 
+/**
+ * Service for playing background music.
+ */
 public class BackgroundMusicService extends Service {
+    /**
+     * Set of background music tracks.
+     */
     private MediaPlayer[] tracks;
+    /**
+     * Index of last played track.
+     */
     private int lastTrackIndex;
+    /**
+     * Listener for tracking moments when application become paused and resumed.
+     */
     private Foreground.Listener myListener;
 
 
@@ -89,6 +101,5 @@ public class BackgroundMusicService extends Service {
 
         Random r = new Random();
         tracks[r.nextInt(tracks.length)].start();
-
     }
 }

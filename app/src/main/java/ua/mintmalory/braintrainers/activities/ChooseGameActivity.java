@@ -18,6 +18,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+/**
+ * Activity for choosing game and game difficulty.
+ */
 public class ChooseGameActivity extends AppCompatActivity implements
 		OnClickListener {
 
@@ -27,14 +30,13 @@ public class ChooseGameActivity extends AppCompatActivity implements
 
 	@Bind(R.id.choose_game_radioGroup) RadioGroup mChooseGameRadioGroup;
 	@Bind(R.id.lights_off_radioButton) RadioButton mLightsOffRadioButton;
-
-	@Bind(R.id.lock_radioButton) RadioButton mLockRadioButton;
+	@Bind(R.id.lock_radioButton) RadioButton mUnlockRadioButton;
 	@Bind(R.id.n_puzzle_radioButton) RadioButton mNPuzzleRadioButton;
 
 	@Bind(R.id.select_difficulty_textView) TextView mSelectDifficultyTextView;
 
 	@Bind(R.id.select_difficulty_radioGroup) RadioGroup mSelectDifficultyGroup;
-	@Bind(R.id.begginer_radioButton) RadioButton mBeginnerRadioButton;
+	@Bind(R.id.beginner_radioButton) RadioButton mBeginnerRadioButton;
 	@Bind(R.id.advanced_radioButton) RadioButton mAdvancedRadioButton;
 	@Bind(R.id.expert_radioButton) RadioButton mExpertRadioButton;
 
@@ -55,18 +57,25 @@ public class ChooseGameActivity extends AppCompatActivity implements
 		mGoButton.setOnClickListener(this);
 	}
 
-	private void setTypeFaceForTitles(Typeface type) {
-		mChooseGameTextView.setTypeface(type);
-		mLightsOffRadioButton.setTypeface(type);
-		mLockRadioButton.setTypeface(type);
-		mNPuzzleRadioButton.setTypeface(type);
-		mSelectDifficultyTextView.setTypeface(type);
-		mBeginnerRadioButton.setTypeface(type);
-		mAdvancedRadioButton.setTypeface(type);
-		mExpertRadioButton.setTypeface(type);
-		mGoButton.setTypeface(type);
+	/**
+	 * Sets custom font to views
+	 * @param customTypeFace typeface for setting
+	 */
+	private void setTypeFaceForTitles(Typeface customTypeFace) {
+		mChooseGameTextView.setTypeface(customTypeFace);
+		mLightsOffRadioButton.setTypeface(customTypeFace);
+		mUnlockRadioButton.setTypeface(customTypeFace);
+		mNPuzzleRadioButton.setTypeface(customTypeFace);
+		mSelectDifficultyTextView.setTypeface(customTypeFace);
+		mBeginnerRadioButton.setTypeface(customTypeFace);
+		mAdvancedRadioButton.setTypeface(customTypeFace);
+		mExpertRadioButton.setTypeface(customTypeFace);
+		mGoButton.setTypeface(customTypeFace);
 	}
 
+	/**
+	 * Handler for start game button.
+	 */
 	@Override
 	public void onClick(View v) {
 		Intent intent = setGame();
@@ -74,6 +83,10 @@ public class ChooseGameActivity extends AppCompatActivity implements
 		startActivity(intent);
 	}
 
+	/**
+	 * Adds to intent chosen game difficulty
+ 	 * @param intent an intent for adding information
+	 */
 	private void setGameDifficulty(Intent intent) {
 		int checkedDifficultyButtonID = mSelectDifficultyGroup
 				.getCheckedRadioButtonId();
@@ -91,6 +104,10 @@ public class ChooseGameActivity extends AppCompatActivity implements
 			intent.putExtra(GAME_DIFFICULTY, GameDifficulty.EXPERT.ordinal());
 	}
 
+	/**
+	 * Adds to intent chosen kind of game
+	 * @param intent an intent for adding information
+	 */
 	private Intent setGame() {
 		int checkedGameButtonID = mChooseGameRadioGroup
 				.getCheckedRadioButtonId();
@@ -99,7 +116,7 @@ public class ChooseGameActivity extends AppCompatActivity implements
 			return new Intent(this, LightsOffGameActivity.class);
 		}
 
-		if (checkedGameButtonID == mLockRadioButton.getId()) {
+		if (checkedGameButtonID == mUnlockRadioButton.getId()) {
 			return new Intent(this, UnlockGameActivity.class);
 		}
 

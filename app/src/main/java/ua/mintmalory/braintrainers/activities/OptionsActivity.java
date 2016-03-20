@@ -16,6 +16,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+/**
+ * Activity for displaying game options.
+ */
 public class OptionsActivity extends AppCompatActivity {
 
     @Bind(R.id.options_textView)
@@ -83,27 +86,35 @@ public class OptionsActivity extends AppCompatActivity {
         setTypeFaces(type);
     }
 
+    /**
+     * Sets radio buttons states according to the actual information in SoundAndMusicOptionsState class.
+     */
     private void setRadioButtonsState() {
-        if (SoundAndMusicOptionsState.music == State.ON){
+        if (SoundAndMusicOptionsState.music == State.ON) {
             onMusicRadioButton.setChecked(true);
-        }else{
+        } else {
             offMusicRadioButton.setChecked(true);
         }
 
-        if (SoundAndMusicOptionsState.sound == State.ON){
+        if (SoundAndMusicOptionsState.sound == State.ON) {
             onSoundRadioButton.setChecked(true);
-        }else{
+        } else {
             offSoundRadioButton.setChecked(true);
         }
     }
 
-    private void setTypeFaces(Typeface type) {
-        optionsTextView.setTypeface(type);
-        musicTextView.setTypeface(type);
-        onMusicRadioButton.setTypeface(type);
-        offMusicRadioButton.setTypeface(type);
-        soundTextView.setTypeface(type);
-        onSoundRadioButton.setTypeface(type);
-        offSoundRadioButton.setTypeface(type);
+    /**
+     * Sets custom font to views
+     *
+     * @param customTypeFace typeface for setting
+     */
+    private void setTypeFaces(Typeface customTypeFace) {
+        optionsTextView.setTypeface(customTypeFace);
+        musicTextView.setTypeface(customTypeFace);
+        onMusicRadioButton.setTypeface(customTypeFace);
+        offMusicRadioButton.setTypeface(customTypeFace);
+        soundTextView.setTypeface(customTypeFace);
+        onSoundRadioButton.setTypeface(customTypeFace);
+        offSoundRadioButton.setTypeface(customTypeFace);
     }
 }

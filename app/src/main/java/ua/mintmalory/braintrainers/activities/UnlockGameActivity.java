@@ -11,6 +11,17 @@ import ua.mintmalory.braintrainers.GameDifficulty;
 import ua.mintmalory.braintrainers.R;
 import ua.mintmalory.braintrainers.gameviews.UnlockGameView;
 
+/**
+ * Activity is responsible for processing Unlock game.
+ * Layout consists of two layers: <p/>
+ * <ol>
+ * <li>ImageView with background image of the activity;</li>
+ * <li>Custom view with game field.</li>
+ * </ol>
+ * <p/>
+ * This structure allows redraw only field instead of whole screen.
+ */
+
 public class UnlockGameActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,20 +30,21 @@ public class UnlockGameActivity extends AppCompatActivity {
         GameDifficulty difficulty = GameDifficulty.values()[getIntent()
                 .getIntExtra(ChooseGameActivity.GAME_DIFFICULTY, 1)];
 
-        UnlockGameView l = new UnlockGameView(this, difficulty);
-        l.setZOrderOnTop(true);
-        l.getHolder().setFormat(PixelFormat.TRANSPARENT);
+        UnlockGameView unlockView = new UnlockGameView(this, difficulty);
+        unlockView.setZOrderOnTop(true);
+        unlockView.getHolder().setFormat(PixelFormat.TRANSPARENT);
 
-        ImageView bgImagePanel = new ImageView(this);
-        bgImagePanel.setBackground(this.getResources().getDrawable(R.drawable.bg_usual));
+        ImageView bgImageView = new ImageView(this);
+        bgImageView.setBackground(this.getResources().getDrawable(R.drawable.bg));
 
-        RelativeLayout.LayoutParams fillParentLayout = new RelativeLayout.LayoutParams(
+        RelativeLayout.LayoutParams matchParentLayoutParams = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        RelativeLayout rootPanel = new RelativeLayout(this);
-        rootPanel.setLayoutParams(fillParentLayout);
-        rootPanel.addView(l, fillParentLayout);
-        rootPanel.addView(bgImagePanel, fillParentLayout);
 
-        setContentView(rootPanel);
+        RelativeLayout rootLayout = new RelativeLayout(this);
+        rootLayout.setLayoutParams(matchParentLayoutParams);
+        rootLayout.addView(unlockView, matchParentLayoutParams);
+        rootLayout.addView(bgImageView, matchParentLayoutParams);
+
+        setContentView(rootLayout);
     }
 }

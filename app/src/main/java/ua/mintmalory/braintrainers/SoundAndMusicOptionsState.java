@@ -1,9 +1,15 @@
 package ua.mintmalory.braintrainers;
 
 /**
- * Created by User on 15.03.2016.
+ * Class, which holds current music and sound options.
  */
 public class SoundAndMusicOptionsState {
+    /**
+     * Music option state.
+     */
     public static State music = State.ON;
+    /**
+     * Sound option state.
+     */
     public static State sound = State.ON;
 }

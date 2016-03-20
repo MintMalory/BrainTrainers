@@ -27,6 +27,7 @@
             <RadioButton
                 android:id="@+id/lock_radioButton"
                 style="@style/TextStyleBig"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:button="@drawable/custom_radio_selector"
@@ -64,7 +65,7 @@
         android:layout_height="wrap_content" >
 
         <RadioButton
-            android:id="@+id/begginer_radioButton"
+            android:id="@+id/beginner_radioButton"
             style="@style/TextStyleBig"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

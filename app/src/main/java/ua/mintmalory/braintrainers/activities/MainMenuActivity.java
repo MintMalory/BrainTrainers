@@ -51,11 +51,14 @@ public class MainMenuActivity extends AppCompatActivity implements
 
         if (audio.getRingerMode() != AudioManager.RINGER_MODE_NORMAL) {
             showMuteMessage();
-        }else{
+        } else {
             startService();
         }
     }
 
+    /**
+     * Shows message which gives user opportunity to turn on or off music and sounds in silent mode.
+     */
     private void showMuteMessage() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(R.string.mute_msg_text);
@@ -67,10 +70,18 @@ public class MainMenuActivity extends AppCompatActivity implements
         alert.show();
     }
 
-    private void startService(){
+    /**
+     * Starts background music service.
+     */
+    private void startService() {
         startService(new Intent(this, BackgroundMusicService.class));
     }
 
+    /**
+     * Handler for AlertDialog.
+      * @param dialog instance of the AlertDialog, whose buttons are needed to be handled.
+     * @param id id of clicked button
+     */
     @Override
     public void onClick(DialogInterface dialog, int id) {
         if (id == DialogInterface.BUTTON_POSITIVE) {
@@ -99,13 +110,20 @@ public class MainMenuActivity extends AppCompatActivity implements
         super.onBackPressed();
     }
 
-    private void setTypeFaces(Typeface type) {
-        mPlayButton.setTypeface(type);
-        mOptionsButton.setTypeface(type);
-        mHelpButton.setTypeface(type);
+    /**
+     * Sets custom font to views
+     * @param customTypeFace typeface for setting
+     */
+    private void setTypeFaces(Typeface customTypeFace) {
+        mPlayButton.setTypeface(customTypeFace);
+        mOptionsButton.setTypeface(customTypeFace);
+        mHelpButton.setTypeface(customTypeFace);
     }
 
 
+    /**
+     * Handler for clicking on main menu buttons.
+     */
     @Override
     public void onClick(View v) {
         Intent intent;
